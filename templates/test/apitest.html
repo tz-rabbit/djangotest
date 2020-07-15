@@ -1,0 +1,104 @@
+<head>
+    <meta charset="UTF-8">
+    <title>django测试</title>
+    <link href="https://cdn.bootcss.com/element-ui/2.13.0/theme-chalk/index.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js"></script>
+    <script src="https://cdn.bootcss.com/element-ui/2.13.0/index.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+    <script src="https://cdn.bootcss.com/qs/6.9.1/qs.js"></script>
+{#    <script src="../js测试/tzclass.js"></script>#}
+{#    <script src="../js测试/cookies.js"></script>#}
+
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <el-button @click="posteditall">测试</el-button>
+    </div>
+    <style>
+    </style>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                }
+
+            },
+            created() {
+
+            },
+            methods: {
+                posteditall() {
+                    var postData = {
+                        // "username": "root1",
+                        // "password": "123456",
+                        "title": "毕业设计LL",
+                        "explain": "需要3个人一起完成",
+                        "details": "需要3个人一起完成，一个负责前端，一个负责后端，一个负责api",
+                        "datetime": "2020-06-18T14:39:00+08:00",
+                        "isok": "1",
+                        "user": 1
+                    }
+                ;
+
+                     axios({
+                            headers: {
+                                {#'Content-Type':"application/x-www-form-urlencoded"#}
+                                'Content-Type': "application/json",
+                         //可用
+                        //还需要输入用户名和密码，可用
+                        //可用
+                        //'Authorization':'Token c3a65219ed0531a11bcd98f6535865a3c0c9e126',
+                        //'token' :'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE1OTM3NTc1MzAsImVtYWlsIjoiIn0.dZPxkufnayTdL7ngYTjyRBU8cXPv1ChhUwNG_x6W0XE',
+                        'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE1OTM3NTc1MzAsImVtYWlsIjoiIn0.dZPxkufnayTdL7ngYTjyRBU8cXPv1ChhUwNG_x6W0XE',
+                },
+                            {#method: 'get',#}
+                            method: 'post',
+                            {#method: 'put',#}
+                            {#method: 'delect',#}
+                            {#url: 'http://127.0.0.1:8000/api-token-auth/',#}
+                            url: 'http://127.0.0.1:8000/api/items/',
+
+                            {#data: Qs.stringify(postData)#}
+                            data: JSON.stringify(postData)
+                        })
+                     {#axios({#}
+                     {#       headers: {#}
+                     {#           'Content-Type':"application/x-www-form-urlencoded"#}
+                     {#       },#}
+                     {#       method: 'post',#}
+                     {#       url: 'http://127.0.0.1:8000/api/items/',#}
+                     {#       data: Qs.stringify(postData)#}
+                     {#   })#}
+                    {#axios({#}
+                    {#        headers: {#}
+                    {#            'Content-Type': "application/json"#}
+                    {#        },#}
+                    {#        method: 'post',#}
+                    {#        url: 'http://127.0.0.1:8000/api/items/',#}
+                    {#        data: JSON.stringify(postData)#}
+                    {#    })#}
+                        .then(res => {
+                            console.log("res", res)
+                            if (res.errCode == 200) {
+                                this.$message({
+                                    message: "ok",
+                                    type: 'success'
+                                });
+                            } else {
+                                this.$message({
+                                    message: "buok",
+                                    type: 'success'
+                                })
+
+
+                            }
+                        })
+                }
+            },
+        })
+    </script>
